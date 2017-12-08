@@ -13,18 +13,30 @@
 #ifndef F_H
 # define F_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
 # define BUFF_SIZE 546
 
-char			**ft_napoln_tabl(int size);
-void			ft_putchar(int c);
-void			ft_putstr(char *src);
-char			*ft_reader(int argc, char **argv);
-int				ft_sqrt(int nb);
-char			**new_square(int size);
+typedef struct			s_position 
+{
+	int					**xy;
+	char				c;
+	struct s_position	*next;
+	struct s_position	*prev;
+}						t_position;
+
+void			ft_left_corner(t_position *tetr);
+int				**ft_parse(char **buf, int i, int r, int c);
+t_position		*ft_create_list(char **buf, int lines_numb);
+char			**ft_create_map(short size);
+int				ft_push_check(t_position *tetr, char **map, int map_size);
+void			ft_clear(t_position *tetr, char **map);
+char			**ft_push(t_position *tetr, char **map);
+int				ft_small_push_check(t_position *tetr, char **map);
+char			**ft_increment_map(char **map, short size);
+t_position		*ft_x_increment(t_position *tetr);
 
 #endif
