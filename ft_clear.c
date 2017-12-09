@@ -17,15 +17,31 @@
 
 void	ft_clear(t_position *tetr, char **map)
 {
-	int x;
+	// int x;
 
-	x = 0;
-	while (x < 4)
+	// x = 0;
+	// while (x < 4)
+	// {
+	// 	map[tetr->xy[x][1]][tetr->xy[x][0]] = '.';
+	// 	x++;
+	// }
+	// ft_left_corner(tetr);
+
+	int 	i;
+	int 	j;
+
+	i = 0;
+	while (map[i])
 	{
-		map[tetr->xy[x][1]][tetr->xy[x][0]] = '.';
-		x++;
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == tetr->c)
+				map[i][j] = '.';
+			j++;
+		}
+		i++;
 	}
-	ft_left_corner(tetr);
 }
 
 // int	main()

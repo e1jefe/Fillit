@@ -36,4 +36,7 @@ int				ft_push_check(t_position *tetr, char **map, int map_size);
 void			ft_clear(t_position *tetr, char **map);
 char			**ft_push(t_position *tetr, char **map);
 int				ft_small_push_check(t_position *tetr, char **map);
+char			**ft_increment_map(char **map, short size);
+t_position		*ft_x_increment(t_position *tetr);
+
 #endif

@@ -19,7 +19,7 @@ int		ft_small_push_check(t_position *tetr, char **map)
 	x = 0;
 	while (x < 4)
 	{
-		if (map[tetr->xy[x][1]][tetr->xy[x][0]] != '#')
+		if (map[tetr->xy[x][1]][tetr->xy[x][0]] == '.')
 			x++;
 		else
 			return (0);

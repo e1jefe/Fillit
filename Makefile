@@ -16,9 +16,13 @@ HEADER = f.h
 
 FLAGS = -Wall -Werror -Wextra
 
-SRC = ft_create_list.c ft_create_map.c ft_parse.c 
+SRC = ft_create_list.c ft_create_map.c ft_parse.c ft_push.c\
+		ft_small_push_check.c ft_left_corner.c ft_push_check.c\
+		ft_clear.c ft_increment_map.c
 
-OBJ = ft_create_list.o ft_create_map.o ft_parse.o 
+OBJ = ft_create_list.o ft_create_map.o ft_parse.o ft_push.o\
+		ft_small_push_check.o ft_left_corner.o ft_push_check.o\
+		ft_clear.o ft_increment_map.o
 
 all: $(NAME)
 

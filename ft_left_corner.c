@@ -34,7 +34,7 @@ void	ft_left_corner(t_position *tetr)
 	x = 0;
 	while (x < 4)
 	{
-		tetr->xy[x][0] -= min_x;
+		tetr->xy[x][0] -= (min_x + 1);
 		tetr->xy[x][1] -= min_y;
 		x++;
 	}

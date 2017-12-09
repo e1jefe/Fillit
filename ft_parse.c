@@ -10,8 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "f.h"
+
+void			ft_hard_left_corner(int **tetr_xy)
+{
+	int min_x;
+	int min_y;
+	int x;
+	int y;
+
+	x = 1;
+	y = 0;
+	min_x = tetr_xy[0][0];
+	min_y = tetr_xy[0][1];
+	while (x < 4)
+	{
+		if (min_x > tetr_xy[x][0])
+			min_x = tetr_xy[x][0];
+		if (min_y > tetr_xy[x][1])
+			min_y = tetr_xy[x][1];
+		x++;
+	}
+	x = 0;
+	while (x < 4)
+	{
+		tetr_xy[x][0] -= (min_x + 1);
+		tetr_xy[x][1] -= min_y;
+		x++;
+	}
+}
 
 int				**ft_parse(char **buf, int i, int r, int c)
 {
@@ -41,12 +68,13 @@ int				**ft_parse(char **buf, int i, int r, int c)
 				}
 			}
 		}
+		ft_hard_left_corner(row_col);
 		return (row_col);
 	}
 	return (0);
 }
 
-// int		main()
+//  int		main()
 // {
 // 	char *pos[41];
 // 	int **res;
@@ -101,7 +129,7 @@ int				**ft_parse(char **buf, int i, int r, int c)
 // 	pos[38] = "..##";
 // 	pos[39] = "..##";
 // 	//pos[8] = "\0";
-// 	res = ft_parse(pos, 15, 0, 0);
+// 	res = ft_parse(pos, 35, 0, 0);
 // 	// while (i < 4 && j < 4)
 // 	// {
 // 	// 	printf("%d %d\n", res[i][j], res[i][j + 1]);

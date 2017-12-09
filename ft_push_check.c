@@ -25,7 +25,7 @@ t_position		*ft_x_increment(t_position *tetr)
 	return(tetr);
 }
 
-t_position		*ft_y_increment(t_position *tetr)
+static t_position		*ft_y_increment(t_position *tetr)
 {
 	int x;
 
@@ -36,7 +36,7 @@ t_position		*ft_y_increment(t_position *tetr)
 	return(tetr);
 }
 
-int 			ft_walls_check(t_position *tetr, int map_size, int i)
+static int 			ft_walls_check(t_position *tetr, int map_size, int i)
 {
 	int x;
 
@@ -49,14 +49,17 @@ int 			ft_walls_check(t_position *tetr, int map_size, int i)
 //		printf("%s\n", "rwall OK");
 		return (1);
 	}
-	while (x < 4)
-		if (tetr->xy[x++][1] >= map_size)
-			return (0);
+	else
+	{
+		while (x < 4)
+			if (tetr->xy[x++][1] >= map_size)
+				return (0);
+	}
 //	printf("%s\n", "dwall OK");
 	return (1);
 }
 
-t_position		*ft_to_left_wall(t_position *tetr)
+static t_position		*ft_to_left_wall(t_position *tetr)
 {
 	int min_x;
 	int x;
@@ -90,14 +93,27 @@ int		ft_push_check(t_position *tetr, char **map, int map_size)
 	{
 		if (ft_walls_check(tetr, map_size, 1) == 1)
 		{
-			if (map[tetr->xy[x][y + 1]][tetr->xy[x][y]] == '#')
+			if (map[tetr->xy[x][1]][tetr->xy[x][0]] != '.')
+			{
+				// if (tetr->c == 'C')
+				// {
+				// 	printf("x = %d y = %d\n", tetr->xy[0][0], tetr->xy[0][1]);
+				// 	printf("x = %d y = %d\n", tetr->xy[1][0], tetr->xy[1][1]);
+				// 	printf("x = %d y = %d\n", tetr->xy[2][0], tetr->xy[2][1]);
+				// 	printf("x = %d y = %d\n\n", tetr->xy[3][0], tetr->xy[3][1]);
+				// }
 				ft_x_increment(tetr);
+				x = 0;
+			}
 			else
+			{
+				// printf("x = %d\n", tetr->xy[0][0], tetr->xy[0][1]);
 				x++;
+			}
 		}
 		else
 		{
-		//printf("%d %d\n", tetr->xy[0][0], tetr->xy[0][1]);
+		// printf("%d %d\n", tetr->xy[0][0], tetr->xy[0][1]);
 			ft_to_left_wall(tetr);
 			ft_y_increment(tetr);
 			if (ft_walls_check(tetr, map_size, -1) == 1)
@@ -108,6 +124,7 @@ int		ft_push_check(t_position *tetr, char **map, int map_size)
 				// printf("%d %d\n", tetr->xy[1][0], tetr->xy[1][1]);
 				// printf("%d %d\n", tetr->xy[2][0], tetr->xy[2][1]);
 				// printf("%d %d\n", tetr->xy[3][0], tetr->xy[3][1]);
+				// printf("return 0\n");
 				return (0);
 			}
 		}

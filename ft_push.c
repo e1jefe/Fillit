@@ -19,7 +19,7 @@ char	**ft_push(t_position *tetr, char **map)
 	x = 0;
 	while (x < 4)
 	{
-		map[tetr->xy[x][1]][tetr->xy[x][0]] = '#';
+		map[tetr->xy[x][1]][tetr->xy[x][0]] = tetr->c;
 		x++;
 	}
 	return (map);
